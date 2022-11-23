@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{% block title %}Pet Adoption Agency{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <h1 class="display-4 text-center">Pets</h1>
+    
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% for pet in pets %}
+                    {% if pet.available %}             
+                    <img src="{{pet.photo_url}}" class="img-rounded" alt="Image of {{pet.name}}" height='120' width='auto'><br>
+                    <a href="/details/{{pet.id}}">{{pet.name}}</a>  is <b>available!</b><br>
+                {% else %}
+                        <img src="{{pet.photo_url}}" class="img-rounded" alt="Image of {{pet.name}}" height='120' width='auto'><br>
+                        <a href="/details/{{pet.id}}">{{pet.name}}</a> is <b>not</b> available. <br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+    
+    
+    <form action="/add">
+    <button class="btn btn-success btn-md">Add a Pet</button>
+    </form>
+</div>
+    {% endblock %}
+</body>
+</html>
